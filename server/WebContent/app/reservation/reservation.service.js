@@ -6,11 +6,11 @@
 
     angular
         .module('rrs')
-        .service('employeeService', employeeService);
+        .service('reservationService', reservationService);
 
-    employeeService.$inject = ['$q', '$http'];
+    reservationService.$inject = ['$q', '$http'];
 
-    function employeeService($q, $http) {
+    function reservationService($q, $http) {
         var self = this;
 
         self.createReservation = createReservation;
@@ -20,8 +20,8 @@
 
 
         //private members
-        function getEmployees() {
-
+        function createReservation(reservation)
+        {
             var defer = $q.defer();
 
             $http
@@ -39,45 +39,18 @@
             return defer.promise;
         }
 
+        function editReservation(reservation)
+        {
 
-
-        function getEmployeeById(id) {
-            var defer = $q.defer();
-
-            $http
-                .get('http://jsonplaceholder.typicode.com/users/' + id)
-                .then(successFn, errorFn);
-
-            function successFn(response) {
-                defer.resolve(response.data);
-            }
-
-            function errorFn(error) {
-                defer.reject(error.statusText);
-            }
-
-            return defer.promise;
         }
 
-        function createEmployee(emp) {
-            var defer = $q.defer();
+        function getReservation(id)
+        {
 
-            $http
-                .post('http://jsonplaceholder.typicode.com/users', emp)
-                .then(successFn, errorFn);
-
-            function successFn(response) {
-                defer.resolve(response.data);
-            }
-
-            function errorFn(error) {
-                defer.reject(error.statusText);
-            }
-
-            return defer.promise;
         }
 
-        function deleteEmployee(id) {
+        function deleteReservation(id)
+        {
 
         }
     }

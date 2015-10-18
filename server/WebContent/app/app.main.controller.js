@@ -54,14 +54,14 @@
                     var otTokens = openTimiming.split('-');
                     if(otTokens.length == 5)
                     {
-                        $scope.opentime = otTokens[3] + "-" + otTokens[4];
+                        $scope.opentime = "" + otTokens[3] + "-" + otTokens[4];
                     }
 
                     var closeTimiming = mainVm.restaurantDetails.close_time;
                     var ctTokens = closeTimiming.split('-');
                     if(ctTokens.length == 5)
                     {
-                        $scope.closetime = ctTokens[3] + "-" + ctTokens[4];
+                        $scope.closetime = "" + ctTokens[3] + "-" + ctTokens[4];
                     }
                 },function(errorMsg)
                 {
