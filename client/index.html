@@ -1,0 +1,165 @@
+<!--
+Author: Kesava Sreeram T
+Date  : 9/30/2015
+-->
+<!DOCTYPE html>
+
+<!-- CSS styles for older browsers was not implemented at the moment, but can
+be implemented in the classes specified -->
+<!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+
+<!--[if (gt IE 9)|!(IE)]>
+<html lang="en">
+<![endif]-->
+
+<html lang="en" ng-app='rrs'>
+<head>
+    <meta charset="UTF-8">
+    <!-- adding HTML5 Tags to browsers before IE 9 (ploy fill)  -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- In order to make sure that the content is sized to fit the screen, so we'll add a viewport meta tag -->
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1">
+
+
+    <!--  Boot strap styles -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- animation styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css" />
+
+    <!-- Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/fonts/fonts.css" />
+    <title>TKS Chain of hotels</title>
+</head>
+<body>
+    <main class="container">
+      
+       <!--  Header and Footer are fixed for any view, but other content changes based on navigation -->
+      <header class="header">
+
+          <div class="mobile-nav">
+              <section class="col-xs-6">
+                  <p class="logo" role = "button">TKS Hotels</p>
+              </section>
+              <section class="col-xs-6 menu-nav">
+                  <div class="title-index">
+                  </div>
+                  <ul class="dropdown-nav">
+                      <li>
+                          <a href="#/home" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'home'}">Home</a>
+                      </li>
+                      <li>
+                          <a href="#/menu" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'menu'}">Menu</a>
+                      </li>
+                      <li>
+                          <a href="#/reservation" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'reservation'}">Make a Reservation</a>
+                      </li>
+                      <li>
+                          <a href="#/testimonials" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'testimonials'}">Testimonials</a>
+                      </li>
+                      <li>
+                          <a href="#/admin" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'admin'}">Admin</a>
+                      </li>
+                  </ul>
+              </section>
+          </div>
+
+          <!-- everything in Same row, just because we dont want to reduce the nav
+           menu into a list item right now also dont want to reduce the font size-->
+          <div class="desk-nav">
+              <nav class="navigation">
+                  <ul class="nav nav-justified">
+                      <li>
+                          <p class="logo" role = "button">TKS Hotels</p>
+                      </li>
+                      <li>
+                          <a href="#/home" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'home'}">Home</a>
+                      </li>
+                      <li>
+                          <a href="#/menu" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'menu'}">Menu</a>
+                      </li>
+                      <li>
+                          <a href="#/reservation" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'reservation'}">Make a Reservation</a>
+                      </li>
+                      <li>
+                          <a href="#/testimonials" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'testimonials'}">Testimonials</a>
+                      </li>
+                      <li>
+                          <a href="#/admin" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'admin'}">Admin</a>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+
+          <div class="tab-nav">
+              <section class="logoHeader">
+                  <p class = "logo" role = "button">TKS Hotels</p>
+              </section>
+              <nav class="navigation">
+                  <ul class="nav nav-justified">
+                      <li>
+                          <a href="#/home" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'home'}">Home</a>
+                      </li>
+                      <li>
+                          <a href="#/menu" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'menu'}">Menu</a>
+                      </li>
+                      <li>
+                          <a href="#/reservation" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'reservation'}">Make a Reservation</a>
+                      </li>
+                      <li>
+                          <a href="#/testimonials" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'testimonials'}">Testimonials</a>
+                      </li>
+                      <li>
+                          <a href="#/admin" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'admin'}">Admin</a>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+      </header>
+      <!-- In order to have fixed navigation on top, we need some kind of buffer, this below div serves that -->
+      <div id="buffer"></div>
+      
+      <section class="main-content clearfix">
+        <div ng-view>
+        </div>
+      </section>
+      <footer>
+          <section class="copyright">
+              <p>Copyright &copy; 2015 | All Rights Reserved | -- Kesava Sreeram T</p>
+          </section>
+
+
+      </footer>
+    </main>
+
+
+
+    <!-- Angular related -->
+    <script src="https://code.angularjs.org/1.4.7/angular.js"></script>
+    <script src="https://code.angularjs.org/1.4.7/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.4.7/angular-messages.js"></script>
+
+    <!-- Custom scripts -->
+    <script src="app/app.module.js"></script>
+    <script src="app/app.config.js"></script>
+    <script src="app/app.main.controller.js"></script>
+    <script src="app/home/homepage.controller.js"></script>
+    <script src="app/foodmenu/foodmenu.controller.js"></script>
+    <script src="app/reservation/reservation.controller.js"></script>
+    <script src="app/testimonials/testimonials.controller.js"></script>
+    <script src="app/admin/admin.controller.js"></script>
+    
+</body>
+</html>
