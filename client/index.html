@@ -44,106 +44,23 @@ be implemented in the classes specified -->
     <title>TKS Chain of hotels</title>
 </head>
 <body>
+
     <main class="container">
-      
        <!--  Header and Footer are fixed for any view, but other content changes based on navigation -->
-      <header class="header">
+       <!-- for ng-include dont forget to use nested quotes -->
+      <header class="header" ng-include="'app/header/header.tmpl.html'"> </header>
 
-          <div class="mobile-nav">
-              <section class="col-xs-6">
-                  <p class="logo" role = "button">TKS Hotels</p>
-              </section>
-              <section class="col-xs-6 menu-nav">
-                  <div class="title-index">
-                  </div>
-                  <ul class="dropdown-nav">
-                      <li>
-                          <a href="#/home" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'home'}">Home</a>
-                      </li>
-                      <li>
-                          <a href="#/menu" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'menu'}">Menu</a>
-                      </li>
-                      <li>
-                          <a href="#/reservation" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'reservation'}">Make a Reservation</a>
-                      </li>
-                      <li>
-                          <a href="#/testimonials" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'testimonials'}">Testimonials</a>
-                      </li>
-                      <li>
-                          <a href="#/admin" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'admin'}">Admin</a>
-                      </li>
-                  </ul>
-              </section>
-          </div>
-
-          <!-- everything in Same row, just because we dont want to reduce the nav
-           menu into a list item right now also dont want to reduce the font size-->
-          <div class="desk-nav">
-              <nav class="navigation">
-                  <ul class="nav nav-justified">
-                      <li>
-                          <p class="logo" role = "button">TKS Hotels</p>
-                      </li>
-                      <li>
-                          <a href="#/home" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'home'}">Home</a>
-                      </li>
-                      <li>
-                          <a href="#/menu" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'menu'}">Menu</a>
-                      </li>
-                      <li>
-                          <a href="#/reservation" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'reservation'}">Make a Reservation</a>
-                      </li>
-                      <li>
-                          <a href="#/testimonials" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'testimonials'}">Testimonials</a>
-                      </li>
-                      <li>
-                          <a href="#/admin" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'admin'}">Admin</a>
-                      </li>
-                  </ul>
-              </nav>
-          </div>
-
-          <div class="tab-nav">
-              <section class="logoHeader">
-                  <p class = "logo" role = "button">TKS Hotels</p>
-              </section>
-              <nav class="navigation">
-                  <ul class="nav nav-justified">
-                      <li>
-                          <a href="#/home" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'home'}">Home</a>
-                      </li>
-                      <li>
-                          <a href="#/menu" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'menu'}">Menu</a>
-                      </li>
-                      <li>
-                          <a href="#/reservation" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'reservation'}">Make a Reservation</a>
-                      </li>
-                      <li>
-                          <a href="#/testimonials" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'testimonials'}">Testimonials</a>
-                      </li>
-                      <li>
-                          <a href="#/admin" role = "button" class ="nav-item" ng-class="{active: $route.current.activetab == 'admin'}">Admin</a>
-                      </li>
-                  </ul>
-              </nav>
-          </div>
-      </header>
       <!-- In order to have fixed navigation on top, we need some kind of buffer, this below div serves that -->
       <div id="buffer"></div>
       
       <section class="main-content clearfix">
-        <div ng-view>
-        </div>
+        <div ng-view></div>
       </section>
-      <footer>
-          <section class="copyright">
-              <p>Copyright &copy; 2015 | All Rights Reserved | -- Kesava Sreeram T</p>
-          </section>
 
 
-      </footer>
+      <footer ng-include="'app/footer/footer.tmpl.html'"></footer>
+
     </main>
-
 
 
     <!-- Angular related -->
