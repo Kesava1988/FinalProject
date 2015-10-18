@@ -11,6 +11,11 @@ html,body,div,ul,li,img,nav,section,header,main,p,h1
     color: white
 }
 
+body
+{
+    background-image: url("../images/Banana_leaf.jpg");
+}
+
 main
 {
     background-color: limegreen;
@@ -190,9 +195,74 @@ nav
     font-size: 1.2em;
 }
 
+.section-heading, .section-sub
+{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2.1em;
+}
+
+/** Form validation */
+.error p {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.2em;
+    color: black;
+    margin: 0;
+}
+
+.new-reservation label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left;
+    float: left;
+}
+
 /** Footer **/
 footer
 {
     margin-top: 4px;
     background-color: darkgreen;
 }
+
+.info
+{
+    padding: 10px;
+}
+
+.more-info
+{
+    height: 216px;
+    max-width: 400px;
+}
+
+.more-info .section-heading
+{
+    font-style: italic;
+    padding-bottom: 10px;
+    text-shadow: 0 0 10px #FEEEEE;
+}
+
+.more-info .section-sub
+{
+    padding-bottom: 5px;
+    font-size: 1.7em;
+    text-shadow: 0 0 5px #FEEEEE;
+}
+
+.more-info .section-data p
+{
+    font-size: 1.3em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.more-info .about p
+{
+    text-align: justify;
+}
+
+.copyright
+{
+    border-top: 4px solid limegreen;
+}
+
+

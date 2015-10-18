@@ -23,7 +23,7 @@ public class CORSFilter implements ContainerResponseFilter
 			ContainerResponseContext responseContext) throws IOException {
 		
 		String [] originsAllowed = {"http://localhost:63342",
-				"http://run.plnkr.co", "http://petstore.swagger.io"};
+				"http://run.plnkr.co", "http://petstore.swagger.io", "*"};
 		
 		String origin = requestContext.getHeaders().getFirst("Origin");
 		
