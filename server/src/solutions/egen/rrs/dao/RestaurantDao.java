@@ -112,6 +112,15 @@ public class RestaurantDao
 				result.setTable_6(rs.getInt("table_6"));
 				result.setTable_8(rs.getInt("table_8"));
 				result.setId(rs.getInt("id"));
+				
+				
+				// those details to this restaurant as well
+				TableHelper.setTABLES_SIZE_1(result.getTable_1());
+				TableHelper.setTABLES_SIZE_2(result.getTable_2());
+				TableHelper.setTABLES_SIZE_4(result.getTable_4());
+				TableHelper.setTABLES_SIZE_6(result.getTable_6());
+				TableHelper.setTABLES_SIZE_8(result.getTable_8());
+				
 			}
 			else
 			{
