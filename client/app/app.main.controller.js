@@ -19,6 +19,7 @@
         //restaurant related properties like opening time, closing time etc.
         $scope.opentime = "";
         $scope.closetime = "";
+        $scope.toggleexpand = true;
 
         var mainVm = this;
 
@@ -26,6 +27,7 @@
 
         /** Functions */
         mainVm.getRestaurantDetails = getRestaurantDetails;
+        mainVm.toggleDropDown = toggleDropDown;
 
 
         init();
@@ -33,24 +35,6 @@
         function init()
         {
             mainVm.getRestaurantDetails();
-
-            console.log("In init");
-            if(mainVm.restaurantDetails != null)
-            {
-                var openTimiming = mainVm.restaurantDetails.open_time;
-                var otTokens = openTimiming.split('-');
-                if(otTokens.length == 5)
-                {
-                    $scope.opentime = otTokens[3] + "-" + otTokens[4];
-                }
-
-                var closeTimiming = mainVm.restaurantDetails.close_time;
-                var ctTokens = closeTimiming.split('-');
-                if(ctTokens.length == 5)
-                {
-                    $scope.closetime = ctTokens[3] + "-" + ctTokens[4];
-                }
-            }
         }
 
         /** Function definitions */
@@ -63,10 +47,29 @@
                 .then(function(restaurantDetails)
                 {
                     mainVm.restaurantDetails = restaurantDetails;
+                    
+                    var openTimiming = mainVm.restaurantDetails.open_time;
+                    var otTokens = openTimiming.split('-');
+                    if(otTokens.length == 5)
+                    {
+                        $scope.opentime = "" + otTokens[3] + "-" + otTokens[4];
+                    }
+
+                    var closeTimiming = mainVm.restaurantDetails.close_time;
+                    var ctTokens = closeTimiming.split('-');
+                    if(ctTokens.length == 5)
+                    {
+                        $scope.closetime = "" + ctTokens[3] + "-" + ctTokens[4];
+                    }
                 },function(errorMsg)
                 {
                     console.log(errorMsg);
                 });
+        }
+
+        function toggleDropDown()
+        {
+            $scope.toggleexpand = !$scope.toggleexpand;
         }
     }
 })();

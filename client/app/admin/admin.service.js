@@ -22,20 +22,16 @@
         function getRestaurantDetails(id)
         {
             var defer = $q.defer();
-
-            console.log("in service");
+            
             $http
                 .get('http://localhost:8080/RRSRestApi/api/restaurant/' + id)
                 .then(successFn, errorFn);
 
             function successFn(response) {
-                console.log("got response");
-                console.log(response.data);
                 defer.resolve(response.data);
             }
 
             function errorFn(error) {
-                console.log("got error");
                 defer.reject(error.statusText);
             }
 

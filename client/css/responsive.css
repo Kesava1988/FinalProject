@@ -8,7 +8,7 @@
 /* No media query since this is the default in Bootstrap */
 
 /* Small devices (tablets, 768px and up) */
-@media (max-width: 768px)
+@media (max-width: 767px)
 {
     .nav >li, .nav-justified > li
     {
@@ -28,6 +28,24 @@
         visibility: hidden;
         height: 0;
         display :none;
+    }
+
+    footer .more-info
+    {
+        border-bottom: 4px solid limegreen;
+    }
+
+    footer .no-border
+    {
+        border: none;
+    }
+
+    .more-info
+    {
+        width: 50%;
+        min-width: 250px;
+        height: 270px;
+        padding-left: 20px;
     }
 }
 
