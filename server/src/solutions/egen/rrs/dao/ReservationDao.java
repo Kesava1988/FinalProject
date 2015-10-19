@@ -177,6 +177,7 @@ public class ReservationDao
 	 */
 	private void createNewReservation(Reservation reservation) throws RRSException
 	{
+		System.out.println("In createNewReservation");
 		Connection con = DBUtil.getConnection();
 		int confNo;
 		PreparedStatement ps = null;
@@ -201,6 +202,8 @@ public class ReservationDao
 				confNo = rs.getInt(1);
 				reservation.setConfNo(confNo);
 			}
+			
+			System.out.println("successfully reserved");
 		}
 		catch (SQLException e)
 		{

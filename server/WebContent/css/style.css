@@ -21,6 +21,15 @@ main
     background-color: limegreen;
 }
 
+.header
+{
+    width: inherit;
+    top: 0;
+    position: fixed;
+    z-index: 100;
+    background-color: darkgreen;
+}
+
 .desk-nav, .tab-nav, .mobile-nav
 {
     width: 100%;
@@ -29,25 +38,66 @@ main
     background-color: inherit;
 }
 
+.mobile-nav .logoHeader
+{
+    width: 70%;
+}
+
+.mobile-nav .menu-icon
+{
+    width: 30%;
+}
+
+.mobile-nav section
+{
+    display: block;
+    float: left;
+}
+
+.mobile-nav .navigation
+{
+    float: right;
+    padding-right: 40px;
+    background-color: darkgreen;
+}
+
 .mobile-nav
 {
     visibility: visible;
     height: auto;
 }
 
-.tab-nav, .desk-nav
+
+.menu-icon
+{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    height: 40px;
+}
+
+.menu-icon button
+{
+    height: 40px;
+    width: 40px;
+    background-image: url("../images/menu_icon.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+}
+
+.collapse
 {
     visibility: hidden;
     height: 0;
 }
 
-.header
+.tab-nav, .desk-nav
 {
-    width: inherit;
-    top: 0;
-    position: fixed;
-    z-index: 100;
-    background-color: inherit;
+    visibility: hidden;
+    height: 0;
 }
 
 nav
@@ -73,7 +123,7 @@ nav
     padding: 0;
 }
 
-.logo, .navigation
+.logo, .navigation, .menu-icon
 {
     background-color: darkgreen;
 }
@@ -100,7 +150,7 @@ nav
 
 .tab-nav .logoHeader
 {
-  padding-bottom: 4px;
+  border-bottom: 4px solid limegreen;
 }
 
 
@@ -130,6 +180,7 @@ nav
 {
     text-shadow: 0 0 15px #FEEEEE;
 }
+
 
 .main-content
 {
@@ -204,9 +255,10 @@ nav
 /** Form validation */
 .error p {
     font-family: "Times New Roman", Times, serif;
-    font-size: 1.2em;
+    font-size: 1em;
     color: black;
     margin: 0;
+    padding: 0;
 }
 
 .new-reservation label {
@@ -215,6 +267,21 @@ nav
     font-weight: bold;
     text-align: left;
     float: left;
+}
+
+.reservationForm .form-group
+{
+    min-height : 80px;
+}
+
+.btn
+{
+    margin: 10px 0;
+}
+
+.new-reservation .section-heading, .new-reservation
+{
+    padding-bottom: 10px;
 }
 
 /** Footer **/
@@ -231,8 +298,11 @@ footer
 
 .more-info
 {
-    height: 216px;
+    height: 256px;
     max-width: 400px;
+    width: 33%;
+    display: block;
+    float: left;
 }
 
 .more-info .section-heading
@@ -265,4 +335,9 @@ footer
     border-top: 4px solid limegreen;
 }
 
+
+#buffer
+{
+    height: 44px;
+}
 

@@ -19,6 +19,7 @@
         //restaurant related properties like opening time, closing time etc.
         $scope.opentime = "";
         $scope.closetime = "";
+        $scope.toggleexpand = true;
 
         var mainVm = this;
 
@@ -26,6 +27,7 @@
 
         /** Functions */
         mainVm.getRestaurantDetails = getRestaurantDetails;
+        mainVm.toggleDropDown = toggleDropDown;
 
 
         init();
@@ -33,14 +35,11 @@
         function init()
         {
             mainVm.getRestaurantDetails();
-
-            console.log("In init");
         }
 
         /** Function definitions */
         function getRestaurantDetails()
         {
-            console.log("in function");
             //hard coding restaurant id = 1;
             var id = 1;
             adminService
@@ -48,7 +47,6 @@
                 .then(function(restaurantDetails)
                 {
                     mainVm.restaurantDetails = restaurantDetails;
-                    console.log(mainVm.restaurantDetails);
                     
                     var openTimiming = mainVm.restaurantDetails.open_time;
                     var otTokens = openTimiming.split('-');
@@ -67,6 +65,11 @@
                 {
                     console.log(errorMsg);
                 });
+        }
+
+        function toggleDropDown()
+        {
+            $scope.toggleexpand = !$scope.toggleexpand;
         }
     }
 })();

@@ -6,10 +6,10 @@
     .module('rrs')
     .controller('ReservationController',ReservationController);
 
-  ReservationController.$inject = ['$scope','$route','reservationService'];
+  ReservationController.$inject = ['$scope','$route','$filter','reservationService'];
   
   // We dont need anything as of now for home page. This is for future usage
-  function ReservationController ($scope,$route,reservationService)
+  function ReservationController ($scope,$route,$filter, reservationService)
   {
     $scope.$route = $route;
 
@@ -34,48 +34,51 @@
       //create reservation object for server
       // Details provided by customer
 
+      console.log("reservationVm.reservation in create");
+
       //Check if empty form is sumitted or if some of the values are untouched
       if(reservationVm.reservation === null)
       {
-        form.reservationVm.reservation.first_name.$setDirty();
+        form.first_name.$setDirty();
         return;
       }
       else if(reservationVm.reservation.first_name === undefined || reservationVm.reservation.first_name === null)
       {
-        form.reservationVm.reservation.first_name.$setDirty();
+        form.first_name.$setDirty();
         return;
       }
       else if(reservationVm.reservation.last_name === undefined || reservationVm.reservation.last_name === null)
       {
-        form.reservationVm.reservation.last_name.$setDirty();
+        form.last_name.$setDirty();
         return;
       }
       else if(reservationVm.reservation.customerEmail === undefined || reservationVm.reservation.customerEmail === null)
       {
-        form.reservationVm.reservation.customerEmail.$setDirty();
+        form.customerEmail.$setDirty();
         return;
       }
       else if(reservationVm.reservation.phone === undefined || reservationVm.reservation.phone === null)
       {
-        form.reservationVm.reservation.phone.$setDirty();
+        form.phone.$setDirty();
         return;
       }
       else if(reservationVm.reservation.partySize === undefined || reservationVm.reservation.partySize === null)
       {
-        form.reservationVm.reservation.partySize.$setDirty();
+        form.partySize.$setDirty();
         return;
       }
       else if(reservationVm.reservation.date === undefined || reservationVm.reservation.date === null)
       {
-        form.reservationVm.reservation.date.$setDirty();
+        form.date.$setDirty();
         return;
       }
       else if(reservationVm.reservation.rtime === undefined || reservationVm.reservation.rtime === null)
       {
-        form.reservationVm.reservation.rtime.$setDirty();
+        form.rtime.$setDirty();
         return;
       }
 
+      reservationVm.newReservation = {};
       reservationVm.newReservation.first_name = reservationVm.reservation.first_name;
       reservationVm.newReservation.last_name = reservationVm.reservation.last_name;
       reservationVm.newReservation.customerEmail = reservationVm.reservation.customerEmail;
@@ -118,7 +121,9 @@
     {
       var date = reservationVm.reservation.date;
       var rtime = reservationVm.reservation.rtime;
-      return "" + $filter('date')(date, 'yyyy-MM-dd'); + $filter('date')(rtime, 'HH-mm');
+      console.log('Time value is :'+ rtime);
+      console.log('Filter Time value is :'+ $filter('date')(rtime, 'HH-mm'));
+      return "" + $filter('date')(date, 'yyyy-MM-dd') +"-"+ $filter('date')(rtime, 'HH-mm');
     }
   }
 })();

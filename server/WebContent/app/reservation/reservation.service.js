@@ -24,8 +24,11 @@
         {
             var defer = $q.defer();
 
+            console.log("Reservation object to server");
+            console.dir(reservation);
+
             $http
-                .get('http://jsonplaceholder.typicode.com/users')
+                .post('http://localhost:8080/RRSRestApi/api/reservation/reserve', reservation)
                 .then(successFn, errorFn);
 
             function successFn(response) {
