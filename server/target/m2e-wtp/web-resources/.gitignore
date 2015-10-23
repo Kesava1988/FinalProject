@@ -36,3 +36,4 @@ bower_components/
 build/
 dist/
 /target/
+/META-INF/

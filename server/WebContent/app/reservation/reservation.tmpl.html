@@ -38,19 +38,11 @@
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
-                    <label for="Date">Date</label>
-                    <input type="date" name="date" ng-model="reservationVm.reservation.date" required class="form-control" id="date" placeholder="Reservation Date">
+                    <label for="Date">Date & Time</label>
+                    <input type="datetime-local" name="date" ng-model="reservationVm.reservation.date" required class="form-control" id="date" placeholder="Reservation Date">
                     <div ng-messages="reservationForm.date.$error" class="error" ng-if="reservationForm.date.$dirty">
                         <p ng-message="required">Date of reservation is required</p>
-                        <p ng-message="date">Date is invalid</p>
-                    </div>
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="Time">Time</label>
-                    <input type="time" name="rtime" ng-model="reservationVm.reservation.rtime" required class="form-control" id="rtime" placeholder="Reservation Time">
-                    <div ng-messages="reservationForm.rtime.$error" class="error" ng-if="reservationForm.rtime.$dirty">
-                        <p ng-message="required">Time of reservation is required</p>
-                        <p ng-message="time">Time is invalid</p>
+                        <p ng-message="datetime-local">Date is invalid</p>
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
@@ -62,11 +54,11 @@
                         <p ng-message="max">Max value is 8</p>
                     </div>
                 </div>
-                <div class="button col-sm-12">
+                <div class="button make-or-break col-sm-12">
                     <div class = "col-sm-2"></div>
-                    <button type="submit" ng-click="reservationVm.createReservation(reservationForm)" class="btn btn-success col-sm-2">Make Reservation</button>
+                    <button type="submit" ng-click="reservationVm.createReservation(reservationForm)" class="btn btn-success col-sm-2">Make a Reservation</button>
                     <div class = "col-sm-4"></div>
-                    <button type="submit" class="btn btn-success col-sm-2">Edit Reservation</button>
+                    <button type="submit" class="btn btn-success col-sm-2">Edit / Cancel Reservation</button>
                     <div class = "col-sm-2"></div>
                 </div>
 
