@@ -88,6 +88,7 @@ public class ReservationDao
 	 */
 	public Reservation getReservation(int conf_no) throws RRSException
 	{
+		System.out.println("Am I here?");
 		Reservation result = null;
 		Connection con = DBUtil.getConnection();
 		PreparedStatement ps = null;
@@ -105,10 +106,14 @@ public class ReservationDao
 			ps.setInt(1, conf_no);
 			rs = ps.executeQuery();
 			
+			System.out.println("Am I still here?");
+			
 			if(rs.next())
 			{
-				result = new Reservation();
+				System.out.println("Creating the reservation object");
 				
+				result = new Reservation();
+				System.out.println("After the reservation object");
 				result.setFirst_name(rs.getString("first_name"));
 				result.setLast_name(rs.getString("last_name"));
 				result.setPhone(rs.getString("phone"));
@@ -119,14 +124,17 @@ public class ReservationDao
 				result.setTableID(rs.getInt("table_id"));
 				result.setConfNo(rs.getInt("conf_no"));
 				result.setRest_id(rs.getInt("rest_id"));
+				System.out.println("OKKKKKK");
 			}
 			else
 			{
+				System.out.println("NOOOOOOOOOO");
 				throw new RRSException(ERROR_MESSSAGES.getErrorMessage(ERROR_CODES.INVALID_CONF_NO));
 			}
 		}
 		catch (SQLException e)
 		{
+			System.out.println("NOOOOOOOOOO SQL exzcepy" );
 			e.printStackTrace();
 			throw new RRSException(e.getMessage(), e.getCause());
 		}
@@ -135,6 +143,7 @@ public class ReservationDao
 			DBUtil.releaseResources(con,ps,rs);
 		}
 		
+		System.out.println("Am I still returning here?");
 		return result;
 	}
 

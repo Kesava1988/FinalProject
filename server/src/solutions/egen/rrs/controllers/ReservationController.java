@@ -79,6 +79,7 @@ public class ReservationController
 			})
 	public Reservation getReservation(@PathParam("conf_no") int conf_no)
 	{
+		System.out.println("Yeah I got called + " + conf_no);
 		try
 		{
 			ReservationDao rDao = new ReservationDao();

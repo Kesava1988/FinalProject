@@ -1,29 +1,82 @@
-<section class="col-sm-6">
+<section id="reservation">
     <div class = "edit-reservation">
         <div class = "section-heading">
-            <p>Edit or Cancel Reservation?</p>
+            <p>Edit or Cancel Reservation</p>
         </div>
+        <form name="reservationForm" class="reservationForm" novalidate>
 
-        <section class = "persom-info">
-            <section class = "form-info">
-                <label for="name">Name</label>
-                <input type="text" class = "form-input" name="name" id="name" placeholder="Enter name" title="Please enter your name" required>
-            </section>
-            <section class="form-info">
+            <div class="form-group col-sm-6">
+                <label for="name">Enter Confirmation Number</label>
+                <input type="number" name="confNo" ng-model="reservationVm.reservation.confNo" required class="form-control" id="confNo" placeholder="Confirmation number">
+                <div ng-messages="reservationForm.confNo.$error" class="error" ng-if="reservationForm.confNo.$dirty">
+                    <p ng-message="required">Confirmation number is required</p>
+                    <p ng-message="number">Only digits are allowed</p>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-6">
+                <button type="submit" ng-click="reservationVm.getReservation(reservationForm)" class="btn btn-success">Get Reservation Details</button>
+            </div>
+
+            <div class="form-group col-sm-6">
+                <label for="name">First Name</label>
+                <input type="text" name="first_name" ng-model="reservationVm.reservation.first_name" required minlength="5" class="form-control" id="first_name" placeholder="First Name">
+                <div ng-messages="reservationForm.first_name.$error" class="error" ng-if="reservationForm.first_name.$dirty">
+                    <p ng-message="required">First Name is required</p>
+                    <p ng-message="minlength">First Name must be longer than 4 characters</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="name">Last Name</label>
+                <input type="text" name="last_name" ng-model="reservationVm.reservation.last_name" required minlength="1" class="form-control" id="last_name" placeholder="Last Name">
+                <div ng-messages="reservationForm.last_name.$error" class="error" ng-if="reservationForm.last_name.$dirty">
+                    <p ng-message="required">Last Name is required</p>
+                    <p ng-message="minlength">Last Name must be atleast 1 character</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
                 <label for="customerEmail">Email</label>
-                <input type="customerEmail" class = "form-input" name="customerEmail" id="customeraEmail" placeholder="Enter customerEmail" title="Please enter a valid customerEmail address" required>
-            </section>
-            <section class="form-info">
-                <label for="Date">Date</label>
-                <input type="date" class = "form-input" name="Date" id="date" title="Please select a valid date" required>
-            </section>
-            <section class="form-info">
-                <label>Time</label>
-                <input type="time" class = "form-input" name="time" id="time" title="Please select a time" required>
-            </section>
-            <section class = "form-info">
-                <button name="submit" type="submit" id="submit" class="button">Submit</button>
-            </section>
-        </section>
+                <input type="email" name="customerEmail" ng-model="reservationVm.reservation.customerEmail" required class="form-control" id="customerEmail" placeholder="Email">
+                <div ng-messages="reservationForm.customerEmail.$error" class="error" ng-if="reservationForm.customerEmail.$dirty">
+                    <p ng-message="required">Email is required</p>
+                    <p ng-message="email">Email is invalid</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone" string-to-number ng-model="reservationVm.reservation.phone" required min="1000000000" max="9999999999" class="form-control" id="phone" placeholder="Phone">
+                <div ng-messages="reservationForm.phone.$error" class="error" ng-if="reservationForm.phone.$dirty">
+                    <p ng-message="required">Phone number is required</p>
+                    <p ng-message="min">Phone number is invalid</p>
+                    <p ng-message="max">Phone number is invalid</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="Date">Date & Time</label>
+                <input type="datetime-local" name="date" ng-model="reservationVm.reservation.date" required class="form-control" id="date" placeholder="Reservation Date">
+                <div ng-messages="reservationForm.date.$error" class="error" ng-if="reservationForm.date.$dirty">
+                    <p ng-message="required">Date of reservation is required</p>
+                    <p ng-message="datetime-local">Date is invalid</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="party">Party Size</label>
+                <input type="number" name="partySize" ng-model="reservationVm.reservation.partySize" required min="1" max="8" class="form-control" id="partySize" placeholder="Party Size">
+                <div ng-messages="reservationForm.partySize.$error" class="error" ng-if="reservationForm.partySize.$dirty">
+                    <p ng-message="required">Party Size is required</p>
+                    <p ng-message="min">Minimum value is 1</p>
+                    <p ng-message="max">Max value is 8</p>
+                </div>
+            </div>
+            <div class="button make-or-break col-sm-12">
+                <div class = "col-sm-2"></div>
+                <button type="submit" ng-click="reservationVm.createReservation(reservationForm)" class="btn btn-success col-sm-2">Confirm Changes</button>
+                <div class = "col-sm-4"></div>
+                <button type="submit" href="#/editreservation" class="btn btn-success col-sm-2">Cancel Reservation</button>
+                <div class = "col-sm-2"></div>
+            </div>
+
+        </form>
     </div>
+</section>
 </section>

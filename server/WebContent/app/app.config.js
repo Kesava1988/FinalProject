@@ -32,6 +32,13 @@
           controllerAs: 'reservationVm',
           activetab: 'reservation'
         })
+       .when('/editreservation', {
+           //Template URL has to be relative to index.html
+           templateUrl: 'app/reservation/edit.reservation.tmpl.html',
+           controller: 'ReservationController',
+           controllerAs: 'reservationVm',
+           activetab: 'reservation'
+       })
         .when('/testimonials', {
           //Template URL has to be relative to index.html
           templateUrl: 'app/testimonials/testimonials.tmpl.html',

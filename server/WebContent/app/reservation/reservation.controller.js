@@ -27,6 +27,11 @@
     reservationVm.getReservation = getReservation;
     reservationVm.deleteReservation = deleteReservation;
 
+    // We need to clear the reservation object on page reload, to avoid picking previous reservation object
+    $scope.$on('$viewContentLoaded', function(){
+      reservationVm.reservation = null;
+    });
+
 
     /** Function definitions */
     function createReservation(form)
@@ -50,7 +55,7 @@
       reservationVm.newReservation.customerEmail = reservationVm.reservation.customerEmail;
       reservationVm.newReservation.phone = "" + reservationVm.reservation.phone; // String in server
       reservationVm.newReservation.partySize = reservationVm.reservation.partySize;
-      reservationVm.newReservation.datetime = getDateTimeString();
+      reservationVm.newReservation.datetime = reservationService.getDateTimeString(reservationVm.reservation.date);
 
 
       //now use the reservation service to store in database
@@ -58,10 +63,10 @@
           .createReservation(reservationVm.newReservation)
           .then(function(reservation)
           {
-
+            reservationVm.reservation = reservation;
           },function(errorMsg)
           {
-
+            reservationVm.reservation = null;
           });
 
       reservationVm.reservation = null;
@@ -69,14 +74,24 @@
 
     }
 
-    function editReservation()
+    function editReservation(confNo)
     {
 
     }
 
-    function getReservation()
+    function getReservation(form)
     {
-
+      reservationService
+          .getReservation(reservationVm.reservation.confNo)
+          .then(function(reservation)
+          {
+            reservationVm.reservation = reservation;
+            console.log('Did I come in success?');
+          },function(errorMsg)
+          {
+            console.log('Did I come here?');
+            reservationVm.reservation = null;
+          });
     }
 
     function deleteReservation()
@@ -88,7 +103,6 @@
     function getDateTimeString()
     {
       var date = reservationVm.reservation.date;
-      var rtime = reservationVm.reservation.rtime;
       console.log('Time value is :'+ rtime);
       console.log('Filter Time value is :'+ $filter('date')(rtime, 'HH-mm'));
       return "" + $filter('date')(date, 'yyyy-MM-dd') +"-"+ $filter('date')(rtime, 'HH-mm');

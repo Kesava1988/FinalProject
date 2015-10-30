@@ -22,7 +22,7 @@ public class RouteConfig extends ResourceConfig
 	 */
 	public RouteConfig()
 	{
-		packages("solutions.egen.rrs");
+		packages("solutions.egen");
 		
 		//Bean config for swagger		
 		register(io.swagger.jaxrs.listing.ApiListingResource.class);

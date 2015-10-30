@@ -8,9 +8,9 @@
         .module('rrs')
         .service('reservationService', reservationService);
 
-    reservationService.$inject = ['$q', '$http'];
+    reservationService.$inject = ['$q', '$http','$filter'];
 
-    function reservationService($q, $http) {
+    function reservationService($q, $http, $filter) {
         var self = this;
 
         self.isValidForm = isValidForm;
@@ -18,6 +18,7 @@
         self.editReservation = editReservation;
         self.getReservation = getReservation;
         self.deleteReservation = deleteReservation;
+        self.getDateTimeString = getDateTimeString;
 
 
         //private members
@@ -59,16 +60,25 @@
                 form.date.$setDirty();
                 return false;
             }
-            else if(reservation.rtime === undefined || reservation.rtime === null)
-            {
-                form.rtime.$setDirty();
-                return false;
-            }
 
             return true;
         }
 
-        function createReservation(reservation,form)
+
+        //Convert date and time into one string
+        function getDateTimeString(date)
+        {
+            console.log('Filter Time value is :'+ $filter('date')(date, 'HH-mm'));
+            return "" + $filter('date')(date, 'yyyy-MM-dd-HH-mm')
+        }
+
+        function getDateTimeFromString(datetime)
+        {
+        	var turnedVal = datetime.substr(0,10)+' '+(datetime.replace(/-/g,":")).substr(11) +':00';
+            return new Date(Date.parse(turnedVal));
+        }
+
+        function createReservation(reservation)
         {
             var defer = $q.defer();
 
@@ -77,6 +87,25 @@
 
             $http
                 .post('http://localhost:8080/RRSRestApi/api/reservation/reserve', reservation)
+                .then(successFn, errorFn);
+
+            function successFn(response) {
+                defer.resolve(convertToFormObject(response.data));
+            }
+
+            function errorFn(error) {
+                defer.reject(error.statusText);
+            }
+
+            return defer.promise;
+        }
+
+        function editReservation(confNo)
+        {
+            var defer = $q.defer();
+
+            $http
+                .get('http://localhost:8080/RRSRestApi/api/reservation/'+ confNo)
                 .then(successFn, errorFn);
 
             function successFn(response) {
@@ -90,19 +119,42 @@
             return defer.promise;
         }
 
-        function editReservation(reservation)
+        function getReservation(confNo)
         {
+            var defer = $q.defer();
 
-        }
+            $http
+                .get('http://localhost:8080/RRSRestApi/api/reservation/'+ confNo)
+                .then(successFn, errorFn);
 
-        function getReservation(id)
-        {
+            function successFn(response) {
+                defer.resolve(convertToFormObject(response.data));
+            }
 
+            function errorFn(error) {
+                defer.reject(error.statusText);
+            }
+
+            return defer.promise;
         }
 
         function deleteReservation(id)
         {
 
+        }
+
+        function convertToFormObject(reservation)
+        {
+            var formObject = {};
+
+            formObject.first_name = reservation.first_name;
+            formObject.last_name = reservation.last_name;
+            formObject.customerEmail = reservation.customerEmail;
+            formObject.phone = (reservation.phone).valueOf(); // String in server
+            formObject.partySize = reservation.partySize;
+            formObject.date = getDateTimeFromString(reservation.datetime);
+            formObject.confNo = reservation.confNo;
+            return formObject;
         }
     }
 })();

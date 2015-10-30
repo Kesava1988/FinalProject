@@ -261,7 +261,7 @@ nav
     padding: 0;
 }
 
-.new-reservation label {
+.new-reservation label, .edit-reservation label {
     display: inline-block;
     margin-bottom: 5px;
     font-weight: bold;
