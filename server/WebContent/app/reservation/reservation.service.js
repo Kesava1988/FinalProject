@@ -100,23 +100,26 @@
             return defer.promise;
         }
 
-        function editReservation(confNo)
+        function editReservation(reservation)
         {
-            var defer = $q.defer();
+        	 var defer = $q.defer();
 
-            $http
-                .get('http://localhost:8080/RRSRestApi/api/reservation/'+ confNo)
-                .then(successFn, errorFn);
+             console.log("Reservation object to server");
+             console.dir(reservation);
 
-            function successFn(response) {
-                defer.resolve(response.data);
-            }
+             $http
+                 .put('http://localhost:8080/RRSRestApi/api/reservation/editreservation', reservation)
+                 .then(successFn, errorFn);
 
-            function errorFn(error) {
-                defer.reject(error.statusText);
-            }
+             function successFn(response) {
+                 defer.resolve(convertToFormObject(response.data));
+             }
 
-            return defer.promise;
+             function errorFn(error) {
+                 defer.reject(error.statusText);
+             }
+
+             return defer.promise;
         }
 
         function getReservation(confNo)
@@ -154,6 +157,8 @@
             formObject.partySize = reservation.partySize;
             formObject.date = getDateTimeFromString(reservation.datetime);
             formObject.confNo = reservation.confNo;
+            formObject.status = (reservation.status).valueOf() == 0?'Waiting':'Confirmed';
+            console.log('What is the status : '+formObject.status);
             return formObject;
         }
     }

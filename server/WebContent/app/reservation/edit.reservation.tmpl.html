@@ -68,11 +68,15 @@
                     <p ng-message="max">Max value is 8</p>
                 </div>
             </div>
+            <div class="form-group col-sm-6">
+                <label for="status">Status</label>
+                <output name="status" class="form-control" id="status" placeholder="status">{{reservationVm.reservation.status}}</output>
+            </div>
             <div class="button make-or-break col-sm-12">
                 <div class = "col-sm-2"></div>
-                <button type="submit" ng-click="reservationVm.createReservation(reservationForm)" class="btn btn-success col-sm-2">Confirm Changes</button>
+                <button type="submit" ng-click="reservationVm.editReservation(reservationForm)" class="btn btn-success col-sm-2">Confirm Changes</button>
                 <div class = "col-sm-4"></div>
-                <button type="submit" href="#/editreservation" class="btn btn-success col-sm-2">Cancel Reservation</button>
+                <button type="submit" ng-click="reservationVm.deleteReservation(reservationForm)" class="btn btn-success col-sm-2">Cancel Reservation</button>
                 <div class = "col-sm-2"></div>
             </div>
 

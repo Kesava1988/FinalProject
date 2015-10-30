@@ -74,9 +74,37 @@
 
     }
 
-    function editReservation(confNo)
+    function editReservation(form)
     {
+    	//check if form is valid i.e if we have pristine elements which might be
+        //missed by validation in HTML page
+        if(!reservationService
+            .isValidForm(reservationVm.reservation,form))
+        {
+          return;
+        }
+        
+        reservationVm.newReservation = {};
+        reservationVm.newReservation.first_name = reservationVm.reservation.first_name;
+        reservationVm.newReservation.last_name = reservationVm.reservation.last_name;
+        reservationVm.newReservation.customerEmail = reservationVm.reservation.customerEmail;
+        reservationVm.newReservation.phone = "" + reservationVm.reservation.phone; // String in server
+        reservationVm.newReservation.partySize = reservationVm.reservation.partySize;
+        reservationVm.newReservation.datetime = reservationService.getDateTimeString(reservationVm.reservation.date);
+        reservationVm.newReservation.confNo = reservationVm.reservation.confNo;
+        reservationVm.newReservation.status = (reservationVm.reservation.status === 'Waiting') ? 0 : 1;
 
+
+        //now use the reservation service to store in database
+        reservationService
+            .editReservation(reservationVm.newReservation)
+            .then(function(reservation)
+            {
+              reservationVm.reservation = reservation;
+            },function(errorMsg)
+            {
+              reservationVm.reservation = null;
+            });
     }
 
     function getReservation(form)
@@ -85,6 +113,7 @@
           .getReservation(reservationVm.reservation.confNo)
           .then(function(reservation)
           {
+        	  console.log('What is the status : '+reservation.status);
             reservationVm.reservation = reservation;
             console.log('Did I come in success?');
           },function(errorMsg)
@@ -96,7 +125,17 @@
 
     function deleteReservation()
     {
-
+    	if(reservationVm.reservation.confNo === undefined || reservationVm.reservation.confNo === null)
+    		returnl
+    		
+    	reservationService
+        .deleteReservation(reservationVm.reservation.confNo)
+        .then(function(reservation)
+        {
+      	},function(errorMsg)
+        {
+          
+        });
     }
 
     //Convert date and time into one string
